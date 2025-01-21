@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chá de Cozinha da Vanessa e Gabriel</title>
+    <title>Chá de Cozinha da Vanessa e Gabriel - 15/02/2025 às 16:00</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +34,9 @@
         h1, h2 {
             text-align: center;
         }
+        p {
+            text-align: center;
+        }
         .button {
             display: block;
             width: fit-content;
@@ -60,12 +63,25 @@
             margin-bottom: 20px;
             color: #ff6f61;
         }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        .recados {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Chá de Cozinha SURPRESA - Vanessa e Gabriel</h1>
+    <h2>15/02/2025 às 16:00</h2>
 </header>
 
 <section class="countdown">
@@ -92,6 +108,13 @@
 </section>
 
 <section>
+    <h2>Mural de Recados</h2>
+    <p>Deixe uma mensagem especial para os noivos!</p>
+    <textarea placeholder="Digite sua mensagem aqui..."></textarea>
+    <button class="button">Enviar Mensagem</button>
+</section>
+
+<section>
     <h2>Dúvidas?</h2>
     <p>Entre em contato pelo WhatsApp: 11 98827-8434 - Yamara</p>
 </section>
@@ -102,7 +125,7 @@
 
 <script>
     // Contagem regressiva
-    const eventDate = new Date("2025-02-15T15:00:00").getTime();
+    const eventDate = new Date("2025-02-15T16:00:00").getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -119,7 +142,7 @@
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("timer").innerHTML = `${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+        document.getElementById("timer").innerHTML = ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos;
     }
 
     const timerInterval = setInterval(updateCountdown, 1000);
