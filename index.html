@@ -73,23 +73,18 @@
 <header>
     <h1>Chá de Cozinha SURPRESA - Vanessa e Gabriel</h1>
     <h2>15/02/2025 às 16:00</h2>
+<p>Estamos muito animados para celebrar este momento especial com vocês! ❤️</p>
 </header>
 
-<section>
-    <h2>Informações do Evento</h2>
-    <p><strong>Data:</strong> 15/02/2025</p> <!-- Atualizada a data -->
-    <p><strong>Horário:</strong> 15:00</p>
-        <p>Estamos muito animados para celebrar este momento especial com vocês! ❤️</p>
-</section>
-
-<section>
-    <h2>Contagem Regressiva</h2>
-    <p class="countdown" id="countdown"></p>
+<section class="countdown">
+    <h2>Faltam:</h2>
+    <p id="timer">Carregando...</p>
 </section>
 
 <section>
     <h2>O Casal</h2>
-    <p>Vanessa e Gabriel iniciaram uma vida juntos há 6 anos e, desde então, têm construído uma história de muito amor e companheirismo. Junte-se a nós para celebrar o amor e a nova jornada desse casal. Vamos ajudá-los a preparar um lar com muito carinho e alegria. Brindaremos essa nova etapa com risadas e, claro, um bingo para garantir a diversão! Sua presença e carinho serão um grande apoio para esse início tão especial!</p>
+    <p>Vanessa e Gabriel iniciaram uma vida juntos há 6 anos e, desde então, têm construído uma história de muito amor e companheirismo. Junte-se a nós para celebrar o amor e a nova jornada desse casal. Vamos ajudá-los a preparar um lar com muito carinho e alegria. Brindaremos essa nova etapa com risadas e, claro, um bingo para garantir a diversão! Sua presença e carinho serão um grande apoio para esse início tão especial!
+</p>
 </section>
 
 <section>
@@ -127,7 +122,7 @@
 </footer>
 
 <script>
-    // Contagem regressiva
+    // Corrigindo a contagem regressiva
     const eventDate = new Date("2025-02-15T16:00:00").getTime();
 
     function updateCountdown() {
@@ -145,10 +140,11 @@
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("timer").innerHTML = ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos;
+        document.getElementById("timer").textContent = ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos;
     }
 
     const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
 
     // Mural de Recados
     const mural = document.getElementById("mural");
