@@ -12,7 +12,7 @@
             padding: 0;
             background-color: #fafafa;
             color: #333;
-            text-align: center; /* Centraliza todo o conteúdo */
+            text-align: center;
         }
         header {
             background-color: #ff6f61;
@@ -26,7 +26,6 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Centraliza os textos de cada seção */
         }
         h1, h2 {
             text-align: center;
@@ -41,7 +40,6 @@
             background-color: #ff6f61;
             border-radius: 5px;
             font-weight: bold;
-            text-align: center;
         }
         .button:hover {
             background-color: #e65a50;
@@ -52,11 +50,6 @@
             background-color: #f1f1f1;
             margin-top: 20px;
         }
-        .countdown {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #ff6f61;
-        }
         .mural {
             margin-top: 20px;
         }
@@ -66,7 +59,12 @@
             background: #f9f9f9;
             border-radius: 5px;
             border: 1px solid #ddd;
-            text-align: left; /* Para alinhar os recados individualmente */
+            text-align: left;
+        }
+        .countdown {
+            font-size: 1.2em;
+            color: #ff6f61;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -113,4 +111,51 @@
 </section>
 
 <section>
-    <h2
+    <h2>Dúvidas?</h2>
+    <p>Entre em contato pelo WhatsApp: <strong>11 98827-8434 - Yamara</strong></p>
+</section>
+
+<footer>
+    <p>Estamos ansiosos para celebrar com você! 🥰</p>
+</footer>
+
+<script>
+    // Contagem regressiva
+    const eventDate = new Date("2025-02-15T16:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft <= 0) {
+            document.getElementById("timer").innerHTML = "O grande dia chegou!";
+            clearInterval(timerInterval);
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML = ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos;
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+
+    // Mural de Recados
+    const mural = document.getElementById("mural");
+    document.getElementById("recadoForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const nome = document.getElementById("nome").value;
+        const mensagem = document.getElementById("mensagem").value;
+        const novoRecado = document.createElement("div");
+        novoRecado.className = "recados";
+        novoRecado.innerHTML = <strong>${nome}:</strong><p>${mensagem}</p>;
+        mural.appendChild(novoRecado);
+        document.getElementById("recadoForm").reset();
+    });
+</script>
+
+</body>
+</html>
