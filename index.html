@@ -3,38 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chá de Cozinha da Vanessa e Gabriel - 15/02/2025 às 16:00</title>
+    <title>Chá de Cozinha - Vanessa e Gabriel - 15/02/2025 às 16:00</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-image: url('https://drive.google.com/uc?export=view&id=1aPDdnYYYKnxup0NYq3gOa8ns1zNPYDBL');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
+            background-color: #fafafa;
             color: #333;
         }
         header {
-            background-color: rgba(255, 111, 97, 0.9); /* Transparência leve na tarja */
+            background-color: #ff6f61;
             color: white;
-            padding: 20px 10px;
+            padding: 20px;
             text-align: center;
         }
         section {
             margin: 20px auto;
             max-width: 800px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9); /* Fundo quase opaco */
+            background: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1, h2 {
-            text-align: center;
-        }
-        p {
             text-align: center;
         }
         .button {
@@ -47,6 +40,7 @@
             background-color: #ff6f61;
             border-radius: 5px;
             font-weight: bold;
+            text-align: center;
         }
         .button:hover {
             background-color: #e65a50;
@@ -63,17 +57,15 @@
             margin-bottom: 20px;
             color: #ff6f61;
         }
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            resize: none;
+        .mural {
+            margin-top: 20px;
         }
         .recados {
-            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -91,7 +83,6 @@
 
 <section>
     <h2>O Casal</h2>
-    <img src="https://drive.google.com/uc?export=view&id=1jpjN_Evg1xkX-HyJ4YoSyrp5_LkA0gd2" alt="Vanessa e Gabriel" style="max-width: 100%; height: auto; border-radius: 10px;">
     <p>Vanessa e Gabriel iniciaram uma vida juntos há 6 anos e, desde então, têm construído uma história de muito amor e companheirismo. Junte-se a nós para celebrar o amor e a nova jornada desse casal. Vamos ajudá-los a preparar um lar com muito carinho e alegria. Brindaremos essa nova etapa com risadas e, claro, um bingo para garantir a diversão! Sua presença e carinho serão um grande apoio para esse início tão especial!</p>
 </section>
 
@@ -109,9 +100,15 @@
 
 <section>
     <h2>Mural de Recados</h2>
-    <p>Deixe uma mensagem especial para os noivos!</p>
-    <textarea placeholder="Digite sua mensagem aqui..."></textarea>
-    <button class="button">Enviar Mensagem</button>
+    <p>Deixe um recado para os noivos lerem!</p>
+    <form id="recadoForm">
+        <input type="text" id="nome" placeholder="Seu nome" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        <textarea id="mensagem" placeholder="Sua mensagem" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+        <button type="submit" class="button" style="margin-top: 10px;">Enviar Recado</button>
+    </form>
+    <div id="mural" class="mural">
+        <!-- Recados aparecerão aqui -->
+    </div>
 </section>
 
 <section>
@@ -146,6 +143,26 @@
     }
 
     const timerInterval = setInterval(updateCountdown, 1000);
+
+    // Mural de recados
+    const form = document.getElementById('recadoForm');
+    const mural = document.getElementById('mural');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nome = document.getElementById('nome').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        if (nome && mensagem) {
+            const recado = document.createElement('div');
+            recado.className = 'recados';
+            recado.innerHTML = <strong>${nome}</strong>: ${mensagem};
+            mural.appendChild(recado);
+
+            form.reset();
+        }
+    });
 </script>
 
 </body>
