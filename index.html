@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -51,18 +50,35 @@
             background-color: #f1f1f1;
             margin-top: 20px;
         }
+        .mural {
+            margin-top: 20px;
+        }
+        .recados {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .countdown {
+            font-size: 1.2em;
+            color: #ff6f61;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+
 <header>
     <h1>Chá de Cozinha SURPRESA - Vanessa e Gabriel</h1>
     <h2>15/02/2025 às 16:00</h2>
-    <p>Estamos muito animados para celebrar este momento especial com vocês! ❤️</p>
+<p>Estamos muito animados para celebrar este momento especial com vocês! ❤️</p>
 </header>
 
 <section>
     <p>Vanessa e Gabriel iniciaram uma vida juntos há 6 anos e, desde então, têm construído uma história de muito amor e companheirismo. Junte-se a nós para celebrar o amor e a nova jornada desse casal. Vamos ajudá-los a preparar um lar com muito carinho e alegria. Brindaremos essa nova etapa com risadas e, claro, um bingo para garantir a diversão! Sua presença e carinho serão um grande apoio para esse início tão especial!
-    </p>
+</p>
 </section>
 
 <section>
@@ -74,7 +90,20 @@
 <section>
     <h2>Lista de Presentes</h2>
     <p>Confira nossa lista de presentes e escolha o que deseja levar!</p>
-    <a href="presentes.html" class="button" target="_blank">Acessar Lista de Presentes</a>
+    <a href="https://docs.google.com/spreadsheets/d/1EcPLZl5gdr8PWG9hNGX8bgB-jpRU3sPidyU1VmQMfNA/edit?gid=0#gid=0" class="button" target="_blank">Acessar Lista de Presentes</a>
+</section>
+
+<section>
+    <h2>Mural de Recados</h2>
+    <p>Deixe um recado para os noivos lerem!</p>
+    <form id="recadoForm">
+        <input type="text" id="nome" placeholder="Seu nome" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        <textarea id="mensagem" placeholder="Sua mensagem" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+        <button type="submit" class="button" style="margin-top: 10px;">Enviar Recado</button>
+    </form>
+    <div id="mural" class="mural">
+        <!-- Recados aparecerão aqui -->
+    </div>
 </section>
 
 <section>
@@ -85,5 +114,45 @@
 <footer>
     <p>Estamos ansiosos para celebrar com você! 🥰</p>
 </footer>
+
+<script>
+    // Corrigindo a contagem regressiva
+    const eventDate = new Date("2025-02-15T16:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft <= 0) {
+            document.getElementById("timer").innerHTML = "O grande dia chegou!";
+            clearInterval(timerInterval);
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").textContent = ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos;
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Mural de Recados
+    const mural = document.getElementById("mural");
+    document.getElementById("recadoForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const nome = document.getElementById("nome").value;
+        const mensagem = document.getElementById("mensagem").value;
+        const novoRecado = document.createElement("div");
+        novoRecado.className = "recados";
+        novoRecado.innerHTML = <strong>${nome}:</strong><p>${mensagem}</p>;
+        mural.appendChild(novoRecado);
+        document.getElementById("recadoForm").reset();
+    });
+</script>
+
 </body>
 </html>
